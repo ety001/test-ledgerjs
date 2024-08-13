@@ -44,13 +44,15 @@ async function handleSignPersonalMessageV2() {
 </script>
 
 <template>
-  <div style="margin-bottom:10px">
-    <input id="message1" type="text" style="height: 32px; width: 200px; margin-right: 20px" />
-    <button @click="handleSignPersonalMessage">Sign Personal Message</button>
-  </div>
-  <div>
-    <input id="message2" type="text" style="height: 32px; width: 200px; margin-right: 20px" />
-    <button @click="handleSignPersonalMessageV2">Sign Personal Message V2</button>
+  <div style="width:500px; display: flex; flex-wrap: wrap;">
+    <div style="margin-bottom:10px">
+      <input id="message1" type="text" style="height: 32px; width: 200px; margin-right: 20px" />
+      <button @click="handleSignPersonalMessage">Sign Personal Message</button>
+    </div>
+    <div>
+      <input id="message2" type="text" style="height: 32px; width: 200px; margin-right: 20px" />
+      <button @click="handleSignPersonalMessageV2">Sign Personal Message V2</button>
+    </div>
   </div>
 </template>
 
