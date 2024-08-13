@@ -9,8 +9,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 import bs58 from "bs58check";
 import axios from "axios";
-import TronProtobuf from "../protobuf/smart_contract_pb";
-const { Transaction, TriggerSmartContract } = TronProtobuf;
+import { TriggerSmartContract } from "../protobuf/smart_contract_pb";
+import { Transaction } from "../protobuf/Tron_pb";
 /**
  * Resolve resolution of transction for clear sign. The result is `null` if transaction is not TriggerSmartContract or no resolution found.
  * @param rawDataHex raw_data_hex in transaction

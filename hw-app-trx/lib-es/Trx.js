@@ -67,7 +67,7 @@ export default class Trx {
             "signTransaction",
             "signTransactionHash",
             "signPersonalMessage",
-            "signPersonalMessageV2",
+            "signPersonalMessageFullDisplay",
             "signTIP712HashedMessage",
             "getAppConfiguration",
         ], scrambleKey);
@@ -358,7 +358,7 @@ export default class Trx {
      * @param message hex string to sign
      * @return a signature as hex string
      * @example
-     * const signature = await tron.signPersonalMessageV2("44'/195'/0'/0/0", "43727970746f436861696e2d54726f6e5352204c6564676572205472616e73616374696f6e73205465737473");
+     * const signature = await tron.signPersonalMessage("44'/195'/0'/0/0", "43727970746f436861696e2d54726f6e5352204c6564676572205472616e73616374696f6e73205465737473");
      */
     signPersonalMessage(path, messageHex) {
         const paths = splitPath(path);
@@ -404,9 +404,9 @@ export default class Trx {
      * @param message hex string to sign
      * @return a signature as hex string
      * @example
-     * const signature = await tron.signPersonalMessage("44'/195'/0'/0/0", "43727970746f436861696e2d54726f6e5352204c6564676572205472616e73616374696f6e73205465737473");
+     * const signature = await tron.signPersonalMessageFullDisplay("44'/195'/0'/0/0", "43727970746f436861696e2d54726f6e5352204c6564676572205472616e73616374696f6e73205465737473");
      */
-    signPersonalMessageV2(path, messageHex) {
+    signPersonalMessageFullDisplay(path, messageHex) {
         const paths = splitPath(path);
         const message = Buffer.from(messageHex, "hex");
         let offset = 0;

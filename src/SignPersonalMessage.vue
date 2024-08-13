@@ -28,30 +28,30 @@ async function handleSignPersonalMessage() {
 }
 
 
-async function handleSignPersonalMessageV2() {
+async function handleSignPersonalMessageFullDisplay() {
   const message2 = document.getElementById('message2').value;
-  console.log('Sign Personal Message V2');
+  console.log('Sign Personal Message Full Display');
   console.log(Buffer.from(message2).toString("hex"))
   const { app, path } = await makeApp();
-  const result = await app.signPersonalMessageV2(
+  const result = await app.signPersonalMessageFullDisplay(
     path,
     Buffer.from(message2).toString("hex")
   );
-  console.log('Sign PersonalMessage V2 Result : ', result);
+  console.log('Sign PersonalMessage Full Display Result : ', result);
 }
 
 
 </script>
 
 <template>
-  <div style="width:500px; display: flex; flex-wrap: wrap;">
+  <div style="width:540px; display: flex; flex-wrap: wrap;">
     <div style="margin-bottom:10px">
       <input id="message1" type="text" style="height: 32px; width: 200px; margin-right: 20px" />
       <button @click="handleSignPersonalMessage">Sign Personal Message</button>
     </div>
     <div>
       <input id="message2" type="text" style="height: 32px; width: 200px; margin-right: 20px" />
-      <button @click="handleSignPersonalMessageV2">Sign Personal Message V2</button>
+      <button @click="handleSignPersonalMessageFullDisplay">Sign Personal Message Full Display</button>
     </div>
   </div>
 </template>
