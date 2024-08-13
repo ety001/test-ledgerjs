@@ -388,6 +388,10 @@ export default class Trx {
         }
         let response;
         return foreach(toSend, (data, i) => {
+            console.log("======toSend======");
+            console.log(toSend);
+            console.log("======data======");
+            console.log(data);
             return this.transport
                 .send(CLA, SIGN_MESSAGE, i === 0 ? 0x00 : 0x80, 0x00, data)
                 .then(apduResponse => {
@@ -434,6 +438,10 @@ export default class Trx {
         }
         let response;
         return foreach(toSend, (data, i) => {
+            console.log("======toSend======");
+            console.log(toSend);
+            console.log("======data======");
+            console.log(data);
             return this.transport
                 .send(CLA, INS_SIGN_PERSONAL_MESSAGE_FULL_DISPLAY, i === 0 ? 0x00 : 0x80, 0x00, data)
                 .then(apduResponse => {
