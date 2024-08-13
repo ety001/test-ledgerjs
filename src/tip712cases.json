@@ -1,0 +1,1269 @@
+[
+  {
+    "domain": {
+      "chainId": 5,
+      "name": "Ether Mail",
+      "verifyingContract": "0xCcCCccccCCCCcCCCCCCcCcCccCcCCCcCcccccccC",
+      "version": "1"
+    },
+    "message": {
+      "contents": "Hello, Bob!",
+      "from": {
+        "name": "Cow",
+        "wallets": [
+          "0xCD2a3d9F938E13CD947Ec05AbC7FE734Df8DD826",
+          "0xDeaDbeefdEAdbeefdEadbEEFdeadbeEFdEaDbeeF"
+        ]
+      },
+      "to": {
+        "name": "Bob",
+        "wallets": [
+          "0xbBbBBBBbbBBBbbbBbbBbbbbBBbBbbbbBbBbbBBbB",
+          "0xB0BdaBea57B0BDABeA57b0bdABEA57b0BDabEa57",
+          "0xB0B0b0b0b0b0B000000000000000000000000000"
+        ]
+      }
+    },
+    "primaryType": "Mail",
+    "types": {
+      "EIP712Domain": [
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "version",
+          "type": "string"
+        },
+        {
+          "name": "chainId",
+          "type": "uint256"
+        },
+        {
+          "name": "verifyingContract",
+          "type": "address"
+        }
+      ],
+      "Mail": [
+        {
+          "name": "from",
+          "type": "Person"
+        },
+        {
+          "name": "to",
+          "type": "Person"
+        },
+        {
+          "name": "contents",
+          "type": "string"
+        }
+      ],
+      "Person": [
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "wallets",
+          "type": "address[]"
+        }
+      ]
+    }
+  },
+  {
+    "domain": {
+      "chainId": 5,
+      "name": "Ether Mail",
+      "verifyingContract": "0xCcCCccccCCCCcCCCCCCcCcCccCcCCCcCcccccccC",
+      "version": "1"
+    },
+    "message": {
+      "contents": "Hello, Bob!",
+      "from": {
+        "name": "Cow",
+        "wallets": [
+          "0xCD2a3d9F938E13CD947Ec05AbC7FE734Df8DD826",
+          "0xDeaDbeefdEAdbeefdEadbEEFdeadbeEFdEaDbeeF"
+        ]
+      },
+      "to": [
+        {
+          "name": "Bob",
+          "wallets": [
+            "0xbBbBBBBbbBBBbbbBbbBbbbbBBbBbbbbBbBbbBBbB",
+            "0xB0BdaBea57B0BDABeA57b0bdABEA57b0BDabEa57",
+            "0xB0B0b0b0b0b0B000000000000000000000000000"
+          ]
+        }
+      ]
+    },
+    "primaryType": "Mail",
+    "types": {
+      "EIP712Domain": [
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "version",
+          "type": "string"
+        },
+        {
+          "name": "chainId",
+          "type": "uint256"
+        },
+        {
+          "name": "verifyingContract",
+          "type": "address"
+        }
+      ],
+      "Group": [
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "members",
+          "type": "Person[]"
+        }
+      ],
+      "Mail": [
+        {
+          "name": "from",
+          "type": "Person"
+        },
+        {
+          "name": "to",
+          "type": "Person[]"
+        },
+        {
+          "name": "contents",
+          "type": "string"
+        }
+      ],
+      "Person": [
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "wallets",
+          "type": "address[]"
+        }
+      ]
+    }
+  },
+  {
+    "domain": {
+      "chainId": 1,
+      "name": "Wyvern Exchange Contract",
+      "verifyingContract": "0x7f268357a8c2552623316e2562d90e642bb538e5",
+      "version": "2.3"
+    },
+    "message": {
+      "basePrice": "2000000000000000000",
+      "calldata": "0x96809f90000000000000000000000000112f0732e59e7600768dfc35ba744b89f2356cd80000000000000000000000000000000000000000000000000000000000000000000000000000000000000000495f947276749ce646f68ac8c248420045cb7b5ebdf2657ffc1fadfd73cf0a8cde95d50b62d3df8c0000000000000700000000320000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000e00000000000000000000000000000000000000000000000000000000000000000",
+      "exchange": "0x7f268357a8c2552623316e2562d90e642bb538e5",
+      "expirationTime": "1646089435",
+      "extra": "0",
+      "feeMethod": 1,
+      "feeRecipient": "0x5b3256965e7c3cf26e11fcaf296dfc8807c01073",
+      "howToCall": 1,
+      "listingTime": "1645484541",
+      "maker": "0x112f0732e59e7600768dfc35ba744b89f2356cd8",
+      "makerProtocolFee": "0",
+      "makerRelayerFee": "1250",
+      "nonce": 0,
+      "paymentToken": "0x0000000000000000000000000000000000000000",
+      "replacementPattern": "0x000000000000000000000000000000000000000000000000000000000000000000000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "saleKind": 0,
+      "salt": "21014297276898013168171430966355369260039074692095359200549020767078729356431",
+      "side": 1,
+      "staticExtradata": "0x",
+      "staticTarget": "0x0000000000000000000000000000000000000000",
+      "taker": "0x0000000000000000000000000000000000000000",
+      "takerProtocolFee": "0",
+      "takerRelayerFee": "0",
+      "target": "0xbaf2127b49fc93cbca6269fade0f7f31df4c88a7"
+    },
+    "primaryType": "Order",
+    "types": {
+      "EIP712Domain": [
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "version",
+          "type": "string"
+        },
+        {
+          "name": "chainId",
+          "type": "uint256"
+        },
+        {
+          "name": "verifyingContract",
+          "type": "address"
+        }
+      ],
+      "Order": [
+        {
+          "name": "exchange",
+          "type": "address"
+        },
+        {
+          "name": "maker",
+          "type": "address"
+        },
+        {
+          "name": "taker",
+          "type": "address"
+        },
+        {
+          "name": "makerRelayerFee",
+          "type": "uint256"
+        },
+        {
+          "name": "takerRelayerFee",
+          "type": "uint256"
+        },
+        {
+          "name": "makerProtocolFee",
+          "type": "uint256"
+        },
+        {
+          "name": "takerProtocolFee",
+          "type": "uint256"
+        },
+        {
+          "name": "feeRecipient",
+          "type": "address"
+        },
+        {
+          "name": "feeMethod",
+          "type": "uint8"
+        },
+        {
+          "name": "side",
+          "type": "uint8"
+        },
+        {
+          "name": "saleKind",
+          "type": "uint8"
+        },
+        {
+          "name": "target",
+          "type": "address"
+        },
+        {
+          "name": "howToCall",
+          "type": "uint8"
+        },
+        {
+          "name": "calldata",
+          "type": "bytes"
+        },
+        {
+          "name": "replacementPattern",
+          "type": "bytes"
+        },
+        {
+          "name": "staticTarget",
+          "type": "address"
+        },
+        {
+          "name": "staticExtradata",
+          "type": "bytes"
+        },
+        {
+          "name": "paymentToken",
+          "type": "address"
+        },
+        {
+          "name": "basePrice",
+          "type": "uint256"
+        },
+        {
+          "name": "extra",
+          "type": "uint256"
+        },
+        {
+          "name": "listingTime",
+          "type": "uint256"
+        },
+        {
+          "name": "expirationTime",
+          "type": "uint256"
+        },
+        {
+          "name": "salt",
+          "type": "uint256"
+        },
+        {
+          "name": "nonce",
+          "type": "uint256"
+        }
+      ]
+    }
+  },
+  {
+    "domain": {
+      "chainId": 1284,
+      "name": "Ether Mail",
+      "verifyingContract": "0xCcCCccccCCCCcCCCCCCcCcCccCcCCCcCcccccccC",
+      "version": "1"
+    },
+    "message": {
+      "contents": "Hello, Bob!",
+      "from": "0xCD2a3d9F938E13CD947Ec05AbC7FE734Df8DD826",
+      "to": [
+        "0xB0BdaBea57B0BDABeA57b0bdABEA57b0BDabEa57",
+        "0xb1a22cc48f6784f629a994917cd6474923630c48"
+      ],
+      "id": 7
+    },
+    "primaryType": "Mail",
+    "types": {
+      "EIP712Domain": [
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "version",
+          "type": "string"
+        },
+        {
+          "name": "chainId",
+          "type": "uint256"
+        },
+        {
+          "name": "verifyingContract",
+          "type": "address"
+        }
+      ],
+      "Mail": [
+        {
+          "name": "from",
+          "type": "address"
+        },
+        {
+          "name": "to",
+          "type": "address[]"
+        },
+        {
+          "name": "contents",
+          "type": "string"
+        },
+        {
+          "name": "id",
+          "type": "uint256"
+        }
+      ]
+    }
+  },
+  {
+    "domain": {
+      "chainId": 1,
+      "name": "Exchange",
+      "verifyingContract": "0x9757f2d2b135150bbeb65308d4a91804107cd8d6",
+      "version": "2"
+    },
+    "message": {
+      "data": "0x0000000000000000000000000000000000000000000000000000000000000020000000000000000000000000000000000000000000000000000000000000006000000000000000000000000000000000000000000000000000000000000000800000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000010000000000000000000000001cf0df2a5a20cd61d68d4489eebbf85b8d39e18a00000000000000000000000000000000000000000000000000000000000000fa",
+      "dataType": "0x23d235ef",
+      "end": 0,
+      "makeAsset": {
+        "assetType": {
+          "assetClass": "0x973bb640",
+          "data": "0x000000000000000000000000495f947276749ce646f68ac8c248420045cb7b5ebdf2657ffc1fadfd73cf0a8cde95d50b62d3df8c000000000000070000000032"
+        },
+        "value": "1"
+      },
+      "maker": "0x112f0732e59e7600768dfc35ba744b89f2356cd8",
+      "salt": "0xdbf0f98bc1746711579dcce549a4cc4e866fb71bf2e185bfefbb7d32f325972e",
+      "start": 0,
+      "takeAsset": {
+        "assetType": {
+          "assetClass": "0xaaaebeba",
+          "data": "0x"
+        },
+        "value": "2000000000000000000"
+      },
+      "taker": "0x0000000000000000000000000000000000000000"
+    },
+    "primaryType": "Order",
+    "types": {
+      "Asset": [
+        {
+          "name": "assetType",
+          "type": "AssetType"
+        },
+        {
+          "name": "value",
+          "type": "uint256"
+        }
+      ],
+      "AssetType": [
+        {
+          "name": "assetClass",
+          "type": "bytes4"
+        },
+        {
+          "name": "data",
+          "type": "bytes"
+        }
+      ],
+      "EIP712Domain": [
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "version",
+          "type": "string"
+        },
+        {
+          "name": "chainId",
+          "type": "uint256"
+        },
+        {
+          "name": "verifyingContract",
+          "type": "address"
+        }
+      ],
+      "Order": [
+        {
+          "name": "maker",
+          "type": "address"
+        },
+        {
+          "name": "makeAsset",
+          "type": "Asset"
+        },
+        {
+          "name": "taker",
+          "type": "address"
+        },
+        {
+          "name": "takeAsset",
+          "type": "Asset"
+        },
+        {
+          "name": "salt",
+          "type": "uint256"
+        },
+        {
+          "name": "start",
+          "type": "uint256"
+        },
+        {
+          "name": "end",
+          "type": "uint256"
+        },
+        {
+          "name": "dataType",
+          "type": "bytes4"
+        },
+        {
+          "name": "data",
+          "type": "bytes"
+        }
+      ]
+    }
+  },
+  {
+    "types": {
+      "EIP712Domain": [
+        {
+          "type": "string",
+          "name": "name"
+        }
+      ],
+      "LDPSigningRequest": [
+        {
+          "type": "string[3][]",
+          "name": "document"
+        },
+        {
+          "type": "string[][4]",
+          "name": "proof"
+        },
+        {
+          "type": "uint8[][][][]",
+          "name": "depthy"
+        }
+      ]
+    },
+    "primaryType": "LDPSigningRequest",
+    "domain": {
+      "name": "Eip712Method2021"
+    },
+    "message": {
+      "depthy": [
+        [
+          [
+            [
+              "1",
+              "2"
+            ],
+            [
+              "3"
+            ]
+          ]
+        ]
+      ],
+      "document": [
+        [
+          "<did:key:z6MkgFneaaMjN6zybqLNXgt4YfmVx2XZhzPdDyk4ZK81daHZ>",
+          "<https://www.w3.org/TR/owl-ref/#sameAs-def>",
+          "\"did:ethr:0xf7398bacf610bb4e3b567811279fcb3c41919f89\""
+        ],
+        [
+          "<urn:uuid:14ab6047-bf2d-4fde-9564-51dead126ffb>",
+          "<https://www.w3.org/2018/credentials#credentialSubject>",
+          "<did:key:z6MkgFneaaMjN6zybqLNXgt4YfmVx2XZhzPdDyk4ZK81daHZ>"
+        ],
+        [
+          "<urn:uuid:14ab6047-bf2d-4fde-9564-51dead126ffb>",
+          "<https://www.w3.org/2018/credentials#issuanceDate>",
+          "\"2021-03-04T21:08:22.615Z\"^^<http://www.w3.org/2001/XMLSchema#dateTime>"
+        ],
+        [
+          "<urn:uuid:14ab6047-bf2d-4fde-9564-51dead126ffb>",
+          "<https://www.w3.org/2018/credentials#issuer>",
+          "<did:ethr:0xf7398bacf610bb4e3b567811279fcb3c41919f89>"
+        ],
+        [
+          "<urn:uuid:14ab6047-bf2d-4fde-9564-51dead126ffb>",
+          "<http://www.w3.org/1999/02/22-rdf-syntax-ns#type>",
+          "<https://www.w3.org/2018/credentials#VerifiableCredential>"
+        ]
+      ],
+      "proof": [
+        [
+          "_:c14n0",
+          "<http://purl.org/dc/terms/created>",
+          "\"2021-03-04T21:08:22.616Z\"^^<http://www.w3.org/2001/XMLSchema#dateTime>"
+        ],
+        [
+          "_:c14n0",
+          "<https://w3id.org/security#proofPurpose>",
+          "<https://w3id.org/security#assertionMethod>"
+        ],
+        [
+          "_:c14n0",
+          "<https://w3id.org/security#verificationMethod>",
+          "<did:ethr:0xf7398bacf610bb4e3b567811279fcb3c41919f89#Eip712Method2021>"
+        ],
+        [
+          "_:c14n0",
+          "<http://www.w3.org/1999/02/22-rdf-syntax-ns#type>",
+          "<https://w3id.org/security#Eip712Signature2021>"
+        ]
+      ]
+    }
+  },
+  {
+    "domain": {
+      "chainId": 5,
+      "name": "Ether Mail",
+      "verifyingContract": "0xCcCCccccCCCCcCCCCCCcCcCccCcCCCcCcccccccC",
+      "version": "1"
+    },
+    "message": {
+      "contents": "Hello, Bob!",
+      "from": {
+        "name": "Cow",
+        "wallets": [
+          "0xCD2a3d9F938E13CD947Ec05AbC7FE734Df8DD826",
+          "0xDeaDbeefdEAdbeefdEadbEEFdeadbeEFdEaDbeeF"
+        ]
+      },
+      "to": {
+        "name": "test list",
+        "members": [
+          {
+            "name": "Bob",
+            "wallets": [
+              "0xbBbBBBBbbBBBbbbBbbBbbbbBBbBbbbbBbBbbBBbB",
+              "0xB0B0b0b0b0b0B000000000000000000000000000"
+            ]
+          },
+          {
+            "name": "Alice",
+            "wallets": [
+              "0xB0BdaBea57B0BDABeA57b0bdABEA57b0BDabEa57"
+            ]
+          }
+        ]
+      },
+      "attach": {
+        "list": [
+          {
+            "name": "first",
+            "size": "100"
+          },
+          {
+            "name": "second",
+            "size": "3400"
+          }
+        ]
+      }
+    },
+    "primaryType": "Mail",
+    "types": {
+      "EIP712Domain": [
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "version",
+          "type": "string"
+        },
+        {
+          "name": "chainId",
+          "type": "uint256"
+        },
+        {
+          "name": "verifyingContract",
+          "type": "address"
+        }
+      ],
+      "Attachment": [
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "size",
+          "type": "uint16"
+        }
+      ],
+      "Attachments": [
+        {
+          "name": "list",
+          "type": "Attachment[]"
+        }
+      ],
+      "MailingList": [
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "members",
+          "type": "Person[]"
+        }
+      ],
+      "Mail": [
+        {
+          "name": "from",
+          "type": "Person"
+        },
+        {
+          "name": "to",
+          "type": "MailingList"
+        },
+        {
+          "name": "contents",
+          "type": "string"
+        },
+        {
+          "name": "attach",
+          "type": "Attachments"
+        }
+      ],
+      "Person": [
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "wallets",
+          "type": "address[]"
+        }
+      ]
+    }
+  },
+  {
+    "domain": {
+      "chainId": 5,
+      "name": "Ether Mail",
+      "verifyingContract": "0xCcCCccccCCCCcCCCCCCcCcCccCcCCCcCccccccc1",
+      "version": "1"
+    },
+    "message": {
+      "contents": "Hello, Bob!",
+      "from": {
+        "name": "Cow",
+        "wallets": [
+          "0xCD2a3d9F938E13CD947Ec05AbC7FE734Df8DD826",
+          "0xDeaDbeefdEAdbeefdEadbEEFdeadbeEFdEaDbeeF"
+        ]
+      },
+      "to": [
+        {
+          "name": "Alice",
+          "wallets": [
+            "0xbBbBBBBbbBBBbbbBbbBbbbbBBbBbbbbBbBbbBBbB",
+            "0xB0B0b0b0b0b0B000000000000000000000000000"
+          ]
+        },
+        {
+          "name": "Bob",
+          "wallets": [
+            "0xB0BdaBea57B0BDABeA57b0bdABEA57b0BDabEa57"
+          ]
+        }
+      ]
+    },
+    "primaryType": "Mail",
+    "types": {
+      "EIP712Domain": [
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "version",
+          "type": "string"
+        },
+        {
+          "name": "chainId",
+          "type": "uint256"
+        },
+        {
+          "name": "verifyingContract",
+          "type": "address"
+        }
+      ],
+      "Group": [
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "members",
+          "type": "Person[]"
+        }
+      ],
+      "Mail": [
+        {
+          "name": "from",
+          "type": "Person"
+        },
+        {
+          "name": "to",
+          "type": "Person[]"
+        },
+        {
+          "name": "contents",
+          "type": "string"
+        }
+      ],
+      "Person": [
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "wallets",
+          "type": "address[]"
+        }
+      ]
+    }
+  },
+  {
+    "domain": {
+      "chainId": 5,
+      "name": "Ether Mail",
+      "verifyingContract": "0xCcCCccccCCCCcCCCCCCcCcCccCcCCCcCcccccccC",
+      "version": "1"
+    },
+    "message": {
+      "contents": "Hello, Bob! 0123456780123456780123456780123456780123456780123456780123456780123456780123456780123456780123456780123456780123456780123456780123456780123456780123456780123456780123456780123456780123456780123456780123456780123456780123456780123456780123456780123456780123456780123456789999999999999999999999999999990123456789",
+      "from": {
+        "name": "Cow",
+        "wallets": [
+          "0xCD2a3d9F938E13CD947Ec05AbC7FE734Df8DD826",
+          "0xDeaDbeefdEAdbeefdEadbEEFdeadbeEFdEaDbeeF"
+        ]
+      },
+      "to": [
+        {
+          "name": "Bob",
+          "wallets": [
+            "0xbBbBBBBbbBBBbbbBbbBbbbbBBbBbbbbBbBbbBBbB",
+            "0xB0BdaBea57B0BDABeA57b0bdABEA57b0BDabEa57",
+            "0xB0B0b0b0b0b0B000000000000000000000000000"
+          ]
+        }
+      ]
+    },
+    "primaryType": "Mail",
+    "types": {
+      "EIP712Domain": [
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "version",
+          "type": "string"
+        },
+        {
+          "name": "chainId",
+          "type": "uint256"
+        },
+        {
+          "name": "verifyingContract",
+          "type": "address"
+        }
+      ],
+      "Group": [
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "members",
+          "type": "Person[]"
+        }
+      ],
+      "Mail": [
+        {
+          "name": "from",
+          "type": "Person"
+        },
+        {
+          "name": "to",
+          "type": "Person[]"
+        },
+        {
+          "name": "contents",
+          "type": "string"
+        }
+      ],
+      "Person": [
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "wallets",
+          "type": "address[]"
+        }
+      ]
+    }
+  },
+  {
+    "domain": {
+      "chainId": 5,
+      "name": "Ether Mail",
+      "verifyingContract": "0xCcCCccccCCCCcCCCCCCcCcCccCcCCCcCcccccccC",
+      "version": "1"
+    },
+    "message": {
+      "contents": "0x112345678912345678912345367891234567891234567891234567891234567891234567891234567891234567891234567891234567891234567891234567891234567891234567891234567891234567891234567899123456789234567899123456789234567899123456789234567899123456789234567899123456789234567891234567892345678911234567891234567891234536789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789912345678923456789912345678923456789912345678923456789912345678923456789912345678923456789123456789234567891123456789123456789123453678912345678912345678912345678912345678912345678912345678912345678912345678912345678912345678912345678912345678912345678912345678912345678912345678991234567892345678991234567892345678991234567892345678991234567892345678991234567892345678912345678923456789",
+      "from": {
+        "name": "Cow",
+        "wallets": [
+          "0xCD2a3d9F938E13CD947Ec05AbC7FE734Df8DD826",
+          "0xDeaDbeefdEAdbeefdEadbEEFdeadbeEFdEaDbeeF"
+        ]
+      },
+      "to": [
+        {
+          "name": "Bob",
+          "wallets": [
+            "0xbBbBBBBbbBBBbbbBbbBbbbbBBbBbbbbBbBbbBBbB",
+            "0xB0BdaBea57B0BDABeA57b0bdABEA57b0BDabEa57",
+            "0xB0B0b0b0b0b0B000000000000000000000000000"
+          ]
+        }
+      ]
+    },
+    "primaryType": "Mail",
+    "types": {
+      "EIP712Domain": [
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "version",
+          "type": "string"
+        },
+        {
+          "name": "chainId",
+          "type": "uint256"
+        },
+        {
+          "name": "verifyingContract",
+          "type": "address"
+        }
+      ],
+      "Group": [
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "members",
+          "type": "Person[]"
+        }
+      ],
+      "Mail": [
+        {
+          "name": "from",
+          "type": "Person"
+        },
+        {
+          "name": "to",
+          "type": "Person[]"
+        },
+        {
+          "name": "contents",
+          "type": "bytes"
+        }
+      ],
+      "Person": [
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "wallets",
+          "type": "address[]"
+        }
+      ]
+    }
+  },
+  {
+    "domain": {
+      "chainId": 5,
+      "name": "Ether Mail",
+      "verifyingContract": "0xCcCCccccCCCCcCCCCCCcCcCccCcCCCcCcccccccC",
+      "version": "1"
+    },
+    "message": {
+      "val": "0x973bb640"
+    },
+    "primaryType": "Test",
+    "types": {
+      "EIP712Domain": [
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "version",
+          "type": "string"
+        },
+        {
+          "name": "chainId",
+          "type": "uint256"
+        },
+        {
+          "name": "verifyingContract",
+          "type": "address"
+        }
+      ],
+      "Test": [
+        {
+          "name": "val",
+          "type": "bytes4"
+        }
+      ]
+    }
+  },
+  {
+    "domain": {
+      "chainId": 1,
+      "name": "Complex Structs Mail",
+      "verifyingContract": "0xCcCCccccCCCCcCCCCCCcCcCccCcCCCcCcccccccC",
+      "version": "1"
+    },
+    "message": {
+      "contents": "Hello, Bob!",
+      "from": {
+        "name": "Cow",
+        "wallets": [
+          "0xCD2a3d9F938E13CD947Ec05AbC7FE734Df8DD826",
+          "0xDeaDbeefdEAdbeefdEadbEEFdeadbeEFdEaDbeeF"
+        ]
+      },
+      "to": {
+        "name": "test list",
+        "members": [
+          {
+            "name": "Bob",
+            "wallets": [
+              "0xbBbBBBBbbBBBbbbBbbBbbbbBBbBbbbbBbBbbBBbB",
+              "0xB0B0b0b0b0b0B000000000000000000000000000"
+            ]
+          },
+          {
+            "name": "Alice",
+            "wallets": [
+              "0xB0BdaBea57B0BDABeA57b0bdABEA57b0BDabEa57"
+            ]
+          }
+        ]
+      },
+      "attach": {
+        "list": [
+          {
+            "name": "first",
+            "size": "100"
+          },
+          {
+            "name": "second",
+            "size": "3400"
+          }
+        ]
+      }
+    },
+    "primaryType": "Mail",
+    "types": {
+      "EIP712Domain": [
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "version",
+          "type": "string"
+        },
+        {
+          "name": "chainId",
+          "type": "uint256"
+        },
+        {
+          "name": "verifyingContract",
+          "type": "address"
+        }
+      ],
+      "Attachment": [
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "size",
+          "type": "uint16"
+        }
+      ],
+      "Attachments": [
+        {
+          "name": "list",
+          "type": "Attachment[]"
+        }
+      ],
+      "MailingList": [
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "members",
+          "type": "Person[]"
+        }
+      ],
+      "Mail": [
+        {
+          "name": "from",
+          "type": "Person"
+        },
+        {
+          "name": "to",
+          "type": "MailingList"
+        },
+        {
+          "name": "contents",
+          "type": "string"
+        },
+        {
+          "name": "attach",
+          "type": "Attachments"
+        }
+      ],
+      "Person": [
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "wallets",
+          "type": "address[]"
+        }
+      ]
+    }
+  },
+  {
+    "domain": {
+      "name": "Who are You?",
+      "version": "1"
+    },
+    "message": {
+      "banner": "Please sign this message with your wallet",
+      "curDate": 1660659773,
+      "id": 38
+    },
+    "primaryType": "Auth",
+    "types": {
+      "Auth": [
+        {
+          "name": "banner",
+          "type": "string"
+        },
+        {
+          "name": "curDate",
+          "type": "uint32"
+        },
+        {
+          "name": "id",
+          "type": "uint8"
+        }
+      ],
+      "EIP712Domain": [
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "version",
+          "type": "string"
+        }
+      ]
+    }
+  },
+  {
+    "domain": {
+      "chainId": 1,
+      "name": "Signed Ints test",
+      "verifyingContract": "0xCcCCccccCCCCcCCCCCCcCcCccCcCCCcCcccccccC",
+      "version": "1"
+    },
+    "message": {
+      "max": "115792089237316195423570985008687907853269984665640564039457584007913129639935",
+      "neg256": "-57896044618658097711785492504343953926634992332820282019728792003956564819968",
+      "pos256": "57896044618658097711785492504343953926634992332820282019728792003956564819967",
+      "neg128": "-170141183460469231731687303715884105728",
+      "pos128": "170141183460469231731687303715884105727",
+      "neg64": "-9223372036854775808",
+      "pos64": "9223372036854775807",
+      "neg32": "-2147483648",
+      "pos32": "2147483647",
+      "neg16": "-32768",
+      "pos16": "32767",
+      "neg8": "-128",
+      "pos8": "127"
+    },
+    "primaryType": "Test",
+    "types": {
+      "EIP712Domain": [
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "version",
+          "type": "string"
+        },
+        {
+          "name": "chainId",
+          "type": "uint256"
+        },
+        {
+          "name": "verifyingContract",
+          "type": "address"
+        }
+      ],
+      "Test": [
+        {
+          "name": "max",
+          "type": "uint256"
+        },
+        {
+          "name": "neg256",
+          "type": "int256"
+        },
+        {
+          "name": "pos256",
+          "type": "int256"
+        },
+        {
+          "name": "neg128",
+          "type": "int128"
+        },
+        {
+          "name": "pos128",
+          "type": "int128"
+        },
+        {
+          "name": "neg64",
+          "type": "int64"
+        },
+        {
+          "name": "pos64",
+          "type": "int64"
+        },
+        {
+          "name": "neg32",
+          "type": "int32"
+        },
+        {
+          "name": "pos32",
+          "type": "int32"
+        },
+        {
+          "name": "neg16",
+          "type": "int16"
+        },
+        {
+          "name": "pos16",
+          "type": "int16"
+        },
+        {
+          "name": "neg8",
+          "type": "int8"
+        },
+        {
+          "name": "pos8",
+          "type": "int8"
+        }
+      ]
+    }
+  },
+  {
+    "types": {
+      "EIP712Domain": [
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "version",
+          "type": "string"
+        }
+      ],
+      "ChangeOwnerThreshold": [
+        {
+          "name": "newThreshold",
+          "type": "uint256"
+        }
+      ]
+    },
+    "primaryType": "ChangeOwnerThreshold",
+    "domain": {
+      "name": "ChangeOwnerThreshold",
+      "version": "1"
+    },
+    "message": {
+      "newThreshold": "0x3"
+    }
+  }
+]

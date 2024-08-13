@@ -1,0 +1,14 @@
+{
+  "TBFomoujFqse6megmarBS3FYAw4chnJbVu": {
+    "0x38ed1739": {
+      "plugin": "swapExactTokensForTokens",
+      "serialized_data": "11506c7567696e426f696c6572706c617465410e1bce983f78f8913002c3f7e52daf78de6da2cb38ed1739",
+      "signature": "304602210096f1b6e5e0fc8cdc7bf90b9edecbe9d0638714d4211d6baf18f66bdf685220c90221009f34a1fc88e0374b297d0c5d68493bce7951ac97302adac494ab9dae6cbd7f8c"
+    },
+    "0xa9059cbb": {
+      "plugin": "transfer",
+      "serialized_data": "11506c7567696e426f696c6572706c617465410e1bce983f78f8913002c3f7e52daf78de6da2cba9059cbb",
+      "signature": "3045022100c6ed1e65f3c1a58fff2348c90e5945ae419e946f71142be6a5210333dd1d8ea7022010cdcf93e2895087194961c360ef24847c5c2c4c1956b02ece931fa4aed174ec"
+    }
+  }
+}
