@@ -2,6 +2,7 @@
 import type Transport from "@ledgerhq/hw-transport";
 import { LedgerTrxTransactionResolution, LoadConfig, ResolutionConfig } from "./services/types";
 import { ledgerService } from "./services/ledger";
+import type { TIP712Message } from "./TIP712/types";
 export { ledgerService };
 /**
  * Tron API
@@ -119,6 +120,12 @@ export default class Trx {
        const signature = await tronApp.signTIP712HashedMessage("44'/195'/0'/0/0",Buffer.from( "0101010101010101010101010101010101010101010101010101010101010101").toString("hex"), Buffer.from("0202020202020202020202020202020202020202020202020202020202020202").toString("hex"));
      */
     signTIP712HashedMessage(path: string, domainSeparatorHex: string, hashStructMessageHex: string): Promise<string>;
+    /**
+     * Sign a typed data. The host computes the domain separator and hashStruct(message)
+     * @example
+       const signature = await tronApp.signTIP712HashedMessage("44'/195'/0'/0/0",Buffer.from( "0101010101010101010101010101010101010101010101010101010101010101").toString("hex"), Buffer.from("0202020202020202020202020202020202020202020202020202020202020202").toString("hex"));
+     */
+    signTIP712Message(path: string, typedMessage: TIP712Message, fullImplem: boolean, loadConfig: LoadConfig): Promise<string>;
     /**
      * get Tron address for a given BIP 32 path.
      * @param path a path in BIP 32 format

@@ -25,7 +25,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
  ********************************************************************************/
 // FIXME drop:
 import { splitPath, foreach, decodeVarint } from "./utils";
-import { signTIP712HashedMessage } from "./TIP712";
+import { signTIP712HashedMessage, signTIP712Message } from "./TIP712";
 import { ledgerService } from "./services/ledger";
 import { deserializeContractInfoFromHex } from "./services/contract";
 export { ledgerService };
@@ -69,6 +69,7 @@ export default class Trx {
             "signPersonalMessage",
             "signPersonalMessageFullDisplay",
             "signTIP712HashedMessage",
+            "signTIP712Message",
             "getAppConfiguration",
         ], scrambleKey);
     }
@@ -388,10 +389,6 @@ export default class Trx {
         }
         let response;
         return foreach(toSend, (data, i) => {
-            console.log("======toSend======");
-            console.log(toSend);
-            console.log("======data======");
-            console.log(data);
             return this.transport
                 .send(CLA, SIGN_MESSAGE, i === 0 ? 0x00 : 0x80, 0x00, data)
                 .then(apduResponse => {
@@ -438,10 +435,6 @@ export default class Trx {
         }
         let response;
         return foreach(toSend, (data, i) => {
-            console.log("======toSend======");
-            console.log(toSend);
-            console.log("======data======");
-            console.log(data);
             return this.transport
                 .send(CLA, INS_SIGN_PERSONAL_MESSAGE_FULL_DISPLAY, i === 0 ? 0x00 : 0x80, 0x00, data)
                 .then(apduResponse => {
@@ -458,6 +451,14 @@ export default class Trx {
      */
     signTIP712HashedMessage(path, domainSeparatorHex, hashStructMessageHex) {
         return signTIP712HashedMessage(this.transport, path, domainSeparatorHex, hashStructMessageHex);
+    }
+    /**
+     * Sign a typed data. The host computes the domain separator and hashStruct(message)
+     * @example
+       const signature = await tronApp.signTIP712HashedMessage("44'/195'/0'/0/0",Buffer.from( "0101010101010101010101010101010101010101010101010101010101010101").toString("hex"), Buffer.from("0202020202020202020202020202020202020202020202020202020202020202").toString("hex"));
+     */
+    signTIP712Message(path, typedMessage, fullImplem, loadConfig) {
+        return signTIP712Message(this.transport, path, typedMessage, fullImplem, loadConfig);
     }
     /**
      * get Tron address for a given BIP 32 path.

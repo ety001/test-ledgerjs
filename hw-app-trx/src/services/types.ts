@@ -3,13 +3,34 @@ export type LedgerTrxTransactionResolution = {
   externalPlugin: Array<{ payload: string; signature: string }>;
 };
 
+export type PluginInfo = {
+  plugin: string;
+  serialized_data: string;
+  signature: string;
+};
+
 export type LoadConfig = {
   // fetch against an api (base url is an api that hosts /plugins/tron.json )
   pluginBaseURL?: string | null;
-  // provide manually some extra plugins to add for the resolution (e.g. for dev purpose)
-  // object will be merged with the returned value of the Ledger cdn payload
-  extraPlugins?: any | null;
-}
+  /**
+   * provide manually some extra plugins to add for the resolution (e.g. for dev purpose)
+   * object will be merged with the returned value of the Ledger cdn payload
+   * @example e.g.
+   * {
+   *    extraPlugins: {
+   *      contractAddress: {
+   *        functionSelector: {
+   *          plugin: '',
+   *          serialized_data: '',
+   *          signature: '',
+   *        }
+   *      }
+   *    }
+   * }
+   *
+   */
+  extraPlugins?: Record<string, Record<string, PluginInfo>> | null;
+};
 
 /**
  * Allows to configure precisely what the service need to resolve.

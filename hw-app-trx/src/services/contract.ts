@@ -1,39 +1,68 @@
 import bs58 from "bs58check";
 import axios from "axios";
-import { LedgerTrxTransactionResolution, LoadConfig } from "./types";
-import TronProtobuf from '../protobuf/smart_contract_pb';
-const { Transaction, TriggerSmartContract } = TronProtobuf;
+import { LedgerTrxTransactionResolution, LoadConfig, ResolutionConfig } from "./types";
+import { TriggerSmartContract } from "../protobuf/smart_contract_pb";
+import { Transaction } from "../protobuf/Tron_pb";
 
 type ContractMethod = {
   payload: string;
   signature: string;
   plugin: string;
-}
-
-export async function resolveTransaction(rawDataHex: string, loadConfig: LoadConfig): Promise<LedgerTrxTransactionResolution | null> {
-  const contractInfo = parseContractInfoFromHex(rawDataHex);
+};
+/**
+ * Resolve resolution of transction for clear sign. The result is `null` if transaction is not TriggerSmartContract or no resolution found.
+ * @param rawDataHex raw_data_hex in transaction
+ * @param loadConfig config for load transaction plugin info
+ * @param loadConfig.pluginBaseURL base url to fetch plugin info
+ * @param loadConfig.extraPlugins plugin info to be merged with plugin info from service. Useful for debug.
+ * @returns resolution for clear sign
+ */
+export async function resolveTransaction(
+  rawDataHex: string,
+  loadConfig: LoadConfig = {},
+  resolutionConfig: ResolutionConfig,
+): Promise<LedgerTrxTransactionResolution | null> {
+  const contractInfo = deserializeContractInfoFromHex(rawDataHex);
   if (!contractInfo) {
     return null;
   }
   const resolution: LedgerTrxTransactionResolution = { externalPlugin: [] };
 
   const { contractAddress, selector } = contractInfo;
-  const contractMethodInfos = await getPluginInfoForContractMethod(contractAddress, selector, loadConfig);
-  if (contractMethodInfos) {
-    const { payload, signature, plugin } = contractMethodInfos;
-    if (plugin) {
-      console.log(`[hw-app-trx]: found plugin (${plugin}) for select: ${selector}`);
-      resolution.externalPlugin.push({ payload, signature })
+  if (resolutionConfig.externalPlugins) {
+    const contractMethodInfos = await getPluginInfoForContractMethod(
+      contractAddress,
+      selector,
+      loadConfig,
+    );
+    if (contractMethodInfos) {
+      const { payload, signature, plugin } = contractMethodInfos;
+      if (plugin) {
+        console.log("tron", `found plugin (${plugin}) for selector: ${selector}`);
+        resolution.externalPlugin.push({ payload, signature });
+      }
+    } else {
+      console.log("tron", "no infos for selector " + selector);
     }
-  } else {
-    console.log("[hw-app-trx]: no infos for selector " + selector);
   }
+
   return resolution;
 }
 
-
-export async function getPluginInfoForContractMethod(contractAddress: string, selector: string, userLoadConfig: LoadConfig): Promise<ContractMethod | undefined> {
-
+/**
+ * Get plugin info of the given contract address and function for clear sign. The result is `undefined` if transaction is not TriggerSmartContract or no resolution found.
+ * @param contractAddress contract address in TriggerSmartContract transaction
+ * @param selector function selector in TriggerSmartContract transaction
+ * @param loadConfig config for load transaction plugin info
+ * @param loadConfig.pluginBaseURL base url to fetch plugin info
+ * @param loadConfig.extraPlugins plugin info to be merged with plugin info from service. Useful for debug.
+ * @returns plugin info with payload and signature if exists.
+ */
+export async function getPluginInfoForContractMethod(
+  contractAddress: string,
+  selector: string,
+  userLoadConfig: LoadConfig = {},
+): Promise<ContractMethod | undefined> {
   const { pluginBaseURL, extraPlugins } = {
     pluginBaseURL: "https://cdn.live.ledger.com",
     extraPlugins: null,
@@ -44,11 +73,13 @@ export async function getPluginInfoForContractMethod(contractAddress: string, se
 
   if (pluginBaseURL) {
     const url = `${pluginBaseURL}/plugins/tron.json`;
-    data = await axios.get(url).then(r => r.data as any)
+    data = await axios
+      .get(url)
+      .then(r => r.data as any)
       .catch(e => {
         console.error(`[hw-app-trx]: could not fetch plugins from ${url}: ${String(e)}`);
         return undefined;
-      })
+      });
   }
   if (extraPlugins) {
     data = { ...data, ...extraPlugins };
@@ -56,17 +87,16 @@ export async function getPluginInfoForContractMethod(contractAddress: string, se
   if (!data) return;
 
   const lcSelector = selector.toLowerCase();
-  const lcContractAddress = contractAddress.toLowerCase();
 
-  const contractSelectors = data[lcContractAddress];
-  if (!!contractSelectors) {
+  const contractSelectors = data[contractAddress];
+  if (contractSelectors) {
     const plugin = contractSelectors[lcSelector];
-    if (!!plugin) {
+    if (plugin) {
       return {
-        payload: plugin['serialized_data'],
-        signature: plugin['signature'],
-        plugin: plugin['plugin'],
-      }
+        payload: plugin["serialized_data"],
+        signature: plugin["signature"],
+        plugin: plugin["plugin"],
+      };
     }
   }
 }
@@ -74,25 +104,37 @@ export async function getPluginInfoForContractMethod(contractAddress: string, se
 export type TriggerSmartContractInfo = {
   contractAddress: string;
   selector: string;
-}
+};
 const TriggerSmartContractType = 31;
 
-export function parseContractInfoFromHex(rawTx: string): TriggerSmartContractInfo | undefined {
+/**
+ * Deserialize contract raw data to get contract address and function selector.
+ * @param rawTx raw data in hex
+ * @returns contractAddress and function selector
+ */
+export function deserializeContractInfoFromHex(
+  rawTx: string,
+): TriggerSmartContractInfo | undefined {
   try {
-    const transaction = Transaction.raw.deserializeBinary(Uint8Array.from(Buffer.from(rawTx, 'hex')));
+    const transaction = (Transaction.raw as any).deserializeBinary(
+      Uint8Array.from(Buffer.from(rawTx, "hex")),
+    );
     const contract = transaction.getContractList()?.[0];
-    if (!contract) { return; }
+    if (!contract) {
+      return;
+    }
     const type = contract.getType();
-    if (type !== TriggerSmartContractType) { return; }
+    if (type !== TriggerSmartContractType) {
+      return;
+    }
 
     const value = contract.getParameter().getValue();
     const smartContract = TriggerSmartContract.deserializeBinary(value);
     const contractAddress = bs58.encode(smartContract.getContractAddress());
-    const data = Buffer.from(smartContract.getData()).toString('hex');
-    const selector = '0x' + data.slice(0, 8).toLowerCase();
+    const data = Buffer.from(smartContract.getData()).toString("hex");
+    const selector = "0x" + data.slice(0, 8).toLowerCase();
     return { contractAddress, selector };
   } catch (e) {
-    console.error(`[hw-app-trx]: failed to parse transaction from hex: ${String(e)}`);
+    console.error(`[hw-app-trx]: failed to deserialize transaction from hex: ${String(e)}`);
   }
 }
-
