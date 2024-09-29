@@ -9,8 +9,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 import { hexBuffer, splitPath } from "../utils";
 import { getLoadConfig } from "../services/loadConfig";
-import { sortObjectAlphabetically, getCoinRefTokensMap, makeTypeEntryStructBuffer, getFilterDisplayNameAndSigBuffers, intAsHexBytes, getPayloadForFilterV2, destructTypeFromString, TIP712_TYPE_PROPERTIES, TIP712_TYPE_ENCODERS, } from "./utils";
-import { findTRC20SignaturesInfo, byContractAddressAndChainId } from "../services/ledger";
+import { getFiltersForMessage, sortObjectAlphabetically, getCoinRefTokensMap, makeTypeEntryStructBuffer, getFilterDisplayNameAndSigBuffers, intAsHexBytes, getPayloadForFilterV2, destructTypeFromString, TIP712_TYPE_PROPERTIES, TIP712_TYPE_ENCODERS, } from "./utils";
+import { byContractAddressAndChainId } from "../services/ledger";
 const CLA = 0xe0;
 export const signTIP712HashedMessage = (transport, path, domainSeparatorHex, hashStructMessageHex) => {
     const domainSeparator = hexBuffer(domainSeparatorHex);
@@ -241,7 +241,7 @@ const makeRecursiveFieldStructImplem = ({ transport, loadConfig, chainId, erc20S
             const filter = filters === null || filters === void 0 ? void 0 : filters.fields.find(f => path === f.path);
             if (filter) {
                 yield sendFilteringInfo(transport, "showField", loadConfig, {
-                    displayName: filter.label,
+                    displayName: filter.label || filter.path,
                     sig: filter.signature,
                     format: filter.format,
                     coinRef: filter.coin_ref,
@@ -310,7 +310,7 @@ export const signTIP712Message = (transport_1, path_1, typedMessage_1, ...args_1
     // Types are sorted by alphabetical order in order to get the same schema hash no matter the JSON format
     const types = sortObjectAlphabetically(unsortedTypes);
     const shouldUseV1Filters = false;
-    const filters = undefined;
+    const filters = yield getFiltersForMessage(typedMessage, shouldUseV1Filters, calServiceURL);
     const coinRefsTokensMap = getCoinRefTokensMap(filters, shouldUseV1Filters, typedMessage);
     const typeEntries = Object.entries(types);
     // Looping on all types entries and fields to send structs' definitions
@@ -330,9 +330,10 @@ export const signTIP712Message = (transport_1, path_1, typedMessage_1, ...args_1
     if (filters) {
         yield sendFilteringInfo(transport, "activate", loadConfig);
     }
-    const erc20SignaturesBlob = !shouldUseV1Filters
-        ? yield findTRC20SignaturesInfo(loadConfig, domain.chainId || 0)
-        : undefined;
+    // const erc20SignaturesBlob = !shouldUseV1Filters
+    //   ? await findTRC20SignaturesInfo(loadConfig, domain.chainId || 0)
+    //   : undefined;
+    const erc20SignaturesBlob = "testErc20SignaturesBlobString";
     // Create the recursion that should pass on each entry
     // of the domain fields and primaryType fields
     const recursiveFieldStructImplem = makeRecursiveFieldStructImplem({
@@ -357,15 +358,15 @@ export const signTIP712Message = (transport_1, path_1, typedMessage_1, ...args_1
         const domainFieldValue = domain[name];
         yield recursiveFieldStructImplem(destructTypeFromString(type), domainFieldValue);
     }
-    // if (filters) {
-    //   const { contractName, fields } = filters;
-    //   const contractNameInfos = {
-    //     displayName: contractName.label,
-    //     filtersCount: fields.length,
-    //     sig: contractName.signature,
-    //   };
-    //   await sendFilteringInfo(transport, "contractName", loadConfig, contractNameInfos);
-    // }
+    if (filters) {
+        const { contractName, fields } = filters;
+        const contractNameInfos = {
+            displayName: contractName.label,
+            filtersCount: fields.length,
+            sig: contractName.signature,
+        };
+        yield sendFilteringInfo(transport, "contractName", loadConfig, contractNameInfos);
+    }
     // Looping on all primaryType type's entries and fields to send
     // struct' implementations
     yield sendStructImplem(transport, {

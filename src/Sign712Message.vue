@@ -90,7 +90,7 @@ async function handleSignEIP712Message() {
 <template>
   <div style="width: 540px; display: flex; flex-wrap: wrap">
     <div style="margin-bottom: 10px">
-      <button @click="handleSignEIP712Message">Sign 712 Message</button>
+      <button @click="handleSignEIP712Message">Sign 712 Message Filter</button>
     </div>
   </div>
 </template>

@@ -29,6 +29,8 @@ export type LoadConfig = {
      *
      */
     extraPlugins?: Record<string, Record<string, PluginInfo>> | null;
+    cryptoassetsBaseURL?: string | null;
+    calServiceURL?: string | null;
 };
 /**
  * Allows to configure precisely what the service need to resolve.

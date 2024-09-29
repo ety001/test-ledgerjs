@@ -4,13 +4,13 @@ import type {
   TIP712Message,
   TIP712MessageTypes,
   TIP712MessageTypesEntry,
-  LoadConfig,
   StructImplemData,
   StructDefData,
   FilteringInfoContractName,
   FilteringInfoShowField,
   MessageFilters,
 } from "./types";
+import { LoadConfig } from "../services/types";
 import { getLoadConfig } from "../services/loadConfig";
 import {
   getFiltersForMessage,
@@ -414,7 +414,7 @@ const makeRecursiveFieldStructImplem = ({
 
       if (filter) {
         await sendFilteringInfo(transport, "showField", loadConfig, {
-          displayName: filter.label,
+          displayName: filter.label || filter.path,
           sig: filter.signature,
           format: filter.format,
           coinRef: filter.coin_ref,
@@ -492,7 +492,7 @@ export const signTIP712Message = async (
   const types = sortObjectAlphabetically(unsortedTypes) as TIP712MessageTypes;
 
   const shouldUseV1Filters = false;
-  const filters = undefined;
+  const filters = await getFiltersForMessage(typedMessage, shouldUseV1Filters, calServiceURL);
   const coinRefsTokensMap = getCoinRefTokensMap(filters, shouldUseV1Filters, typedMessage);
 
   const typeEntries = Object.entries(types) as [
@@ -519,9 +519,12 @@ export const signTIP712Message = async (
     await sendFilteringInfo(transport, "activate", loadConfig);
   }
 
-  const erc20SignaturesBlob = !shouldUseV1Filters
-    ? await findTRC20SignaturesInfo(loadConfig, domain.chainId || 0)
-    : undefined;
+  // const erc20SignaturesBlob = !shouldUseV1Filters
+  //   ? await findTRC20SignaturesInfo(loadConfig, domain.chainId || 0)
+  //   : undefined;
+
+  const erc20SignaturesBlob = "testErc20SignaturesBlobString";
+
   // Create the recursion that should pass on each entry
   // of the domain fields and primaryType fields
   const recursiveFieldStructImplem = makeRecursiveFieldStructImplem({
@@ -548,15 +551,15 @@ export const signTIP712Message = async (
     await recursiveFieldStructImplem(destructTypeFromString(type as string), domainFieldValue);
   }
 
-  // if (filters) {
-  //   const { contractName, fields } = filters;
-  //   const contractNameInfos = {
-  //     displayName: contractName.label,
-  //     filtersCount: fields.length,
-  //     sig: contractName.signature,
-  //   };
-  //   await sendFilteringInfo(transport, "contractName", loadConfig, contractNameInfos);
-  // }
+  if (filters) {
+    const { contractName, fields } = filters;
+    const contractNameInfos = {
+      displayName: contractName.label,
+      filtersCount: fields.length,
+      sig: contractName.signature,
+    };
+    await sendFilteringInfo(transport, "contractName", loadConfig, contractNameInfos);
+  }
 
   // Looping on all primaryType type's entries and fields to send
   // struct' implementations

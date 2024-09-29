@@ -45,7 +45,7 @@ export declare const getSchemaHashForMessage: (message: TIP712Message) => string
  * @param {EIP712Message} message
  * @returns {MessageFilters | undefined}
  */
-export declare const getFiltersForMessage: (message: TIP712Message, shouldUseV1Filters?: boolean, calServiceURL?: string | null) => Promise<MessageFilters | undefined>;
+export declare const getFiltersForMessage: (message: TIP712Message, shouldUseV1Filters?: boolean, calServiceURL?: string | null) => Promise<any>;
 /**
  * Using a path as a string, returns the value(s) of a json key without worrying about depth or arrays
  * (e.g: 'to.wallets.[]' => ["0x123", "0x456"])

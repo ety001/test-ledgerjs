@@ -1,6 +1,6 @@
 /// <reference types="node" />
 import { resolveTransaction } from "./contract";
-import { LoadConfig } from "./../TIP712/types";
+import { LoadConfig } from "./types";
 export declare const ledgerService: {
     resolveTransaction: typeof resolveTransaction;
 };

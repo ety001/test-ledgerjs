@@ -1,3 +1,3 @@
-import type { LoadConfig } from "../TIP712/types";
+import type { LoadConfig } from "./types";
 export declare function getLoadConfig(userLoadConfig?: LoadConfig): LoadConfig;
 //# sourceMappingURL=loadConfig.d.ts.map

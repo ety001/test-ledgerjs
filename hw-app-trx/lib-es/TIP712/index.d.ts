@@ -1,5 +1,6 @@
 import Transport from "@ledgerhq/hw-transport";
-import type { TIP712Message, LoadConfig } from "./types";
+import type { TIP712Message } from "./types";
+import { LoadConfig } from "../services/types";
 export declare const signTIP712HashedMessage: (transport: Transport, path: string, domainSeparatorHex: string, hashStructMessageHex: string) => Promise<string>;
 /**
  * @ignore for the README

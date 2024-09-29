@@ -20,13 +20,6 @@ export type TIP712Message = {
     primaryType: string;
     message: Record<string, unknown>;
 };
-export type LoadConfig = {
-    nftExplorerBaseURL?: string | null;
-    pluginBaseURL?: string | null;
-    extraPlugins?: any | null;
-    cryptoassetsBaseURL?: string | null;
-    calServiceURL?: string | null;
-};
 export type FieldFiltersV1 = {
     label: string;
     path: string;
