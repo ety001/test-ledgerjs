@@ -28,11 +28,11 @@
   "license": "Apache-2.0",
   "dependencies": {
     "@ledgerhq/hw-transport": "^6.31.2",
+    "@ledgerhq/cryptoassets": "^13.3.0",
     "axios": "^1.7.2",
     "bs58check": "^4.0.0"
   },
   "devDependencies": {
-    "@ledgerhq/cryptoassets": "^13.3.0",
     "@ledgerhq/hw-transport-mocker": "workspace:^",
     "@ledgerhq/logs": "^6.29.2",
     "@types/jest": "^29.5.10",
